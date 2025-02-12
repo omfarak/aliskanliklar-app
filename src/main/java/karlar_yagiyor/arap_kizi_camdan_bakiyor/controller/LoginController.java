@@ -12,7 +12,7 @@ public class LoginController {
 
     @GetMapping("/message")
     public MessageResponse getMessage() {
-        return new MessageResponse("Hello World from Backend!", 2025);
+        return new MessageResponse("Hello World from Backend! and testing the branches", 2025);
     }
 
     static class MessageResponse{
