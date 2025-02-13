@@ -1,23 +1,5 @@
 /* LoginPage.css */
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: clamp(10px, 3vw, 20px);
-    font-family: 'Pixel', sans-serif;
-  }
-  
-  .login-card {
-    background-color: var(--bg-secondary);
-    padding: clamp(20px, 5vw, 40px);
-    border-radius: clamp(8px, 2vw, 10px);
-    width: 100%;
-    max-width: min(90vw, 400px);
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 2px solid var(--border-color);
-  }
+
   
 /* Pacman Logo Styles - Update the logo section in LoginPage.css */
 /* Pacman Logo Styles */
@@ -77,41 +59,8 @@
     white-space: nowrap;
     opacity: 1;
 }
-  /* Typography */
-  h1 {
-    color: var(--text-primary);
-    margin-bottom: clamp(3px, 1vw, 5px);
-    font-size: clamp(20px, 4vw, 24px);
-  }
   
-  .subtitle {
-    color: var(--text-secondary);
-    margin-bottom: clamp(20px, 4vw, 30px);
-    font-size: clamp(12px, 2.5vw, 14px);
-  }
-  
-  /* Form Elements */
-  .input-group {
-    margin-bottom: clamp(10px, 2vw, 15px);
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: clamp(8px, 2vw, 12px);
-    border: 2px solid var(--border-color);
-    border-radius: clamp(4px, 1vw, 5px);
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-size: clamp(12px, 2.5vw, 14px);
-    font-family: 'Pixel', sans-serif;
-  }
-  
-  input[type="text"]::placeholder,
-  input[type="password"]::placeholder {
-    color: var(--text-secondary);
-  }
-  
+
   .form-footer {
     display: flex;
     justify-content: space-between;
@@ -138,29 +87,27 @@
     color: var(--text-secondary);
   }
   
-  /* Buttons */
-  .login-button {
-    width: 100%;
-    padding: clamp(8px, 2vw, 12px);
-    background-color: var(--text-primary);
-    color: var(--bg-primary);
-    border: none;
+  
+ 
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: clamp(8px, 1.5vw, 10px);
+}
+
+.social-button {
+    width: clamp(32px, 6vw, 40px);
+    height: clamp(32px, 6vw, 40px);
+    border: 2px solid var(--border-color);
     border-radius: clamp(4px, 1vw, 5px);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     cursor: pointer;
-    font-size: clamp(14px, 3vw, 16px);
-    margin-bottom: clamp(15px, 3vw, 20px);
     font-family: 'Pixel', sans-serif;
     transition: all 0.3s ease;
-  }
-  
-  .login-button:hover {
-    background-color: var(--text-secondary);
-    transform: translateY(-2px);
-  }
-  
-  .login-button:active {
-    transform: translateY(0);
-  }
+    font-size: clamp(12px, 2.5vw, 14px);
+}
+ 
   
   .signup-link {
     margin-bottom: clamp(15px, 3vw, 20px);
@@ -173,12 +120,6 @@
     color: var(--text-secondary);
   }
   
-  /* Social Buttons */
-  .social-buttons {
-    display: flex;
-    justify-content: center;
-    gap: clamp(8px, 1.5vw, 10px);
-  }
   
   .social-button {
     width: clamp(32px, 6vw, 40px);
@@ -216,7 +157,8 @@
   [data-theme='dark'] .social-button:hover {
     background-color: var(--hover-color);
   }
-  
+ 
+
   /* Media Queries */
   @media (max-width: 480px) {
     .form-footer {

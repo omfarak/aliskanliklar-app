@@ -1,0 +1,22 @@
+.auth-card {
+    background-color: var(--bg-secondary);
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: clamp(8px, 2vw, 10px);
+    width: 100%;
+    max-width: min(90vw, 400px);
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--border-color);
+}
+
+.auth-card h1 {
+    color: var(--text-primary);
+    margin-bottom: clamp(3px, 1vw, 5px);
+    font-size: clamp(20px, 4vw, 24px);
+}
+
+.auth-card .subtitle {
+    color: var(--text-secondary);
+    margin-bottom: clamp(20px, 4vw, 30px);
+    font-size: clamp(12px, 2.5vw, 14px);
+}
