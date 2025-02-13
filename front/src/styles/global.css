@@ -1,0 +1,53 @@
+  /* src/styles/global.css */
+  :root {
+      --bg-primary: #FFD95F;
+      --bg-secondary: #FFEFC8;
+      --text-primary: #3D8D7A;
+      --text-secondary: #2e3a2b;
+      --border-color: #3D8D7A; /*text prim */
+      --gradient-start: #3D8D7A; /*text prim */
+      --gradient-end: #B3D8A8; /*text seec*/
+    }
+    
+    [data-theme='dark'] {
+      /* Dark Theme renkleri - yeni palet */
+      --bg-primary: #1A1A1D;    /* En koyu arka plan */
+      --bg-secondary: #3B1C32;  /* Form elementleri için arka plan */
+      --text-primary: #A64D79;  /* Ana metin rengi */
+      --text-secondary: #A64D79 ;/* İkincil metin ve vurgu rengi */
+      --border-color: #6A1E55;  /* Kenarlıklar için */
+      --gradient-start: #1A1A1D;/* Gradient başlangıç */
+      --gradient-end: #3B1C32;  /* Gradient bitiş */
+      
+      /* Ek renkler */
+      --hover-color: #A64D79;   /* Hover durumları için */
+      --shadow-color: rgba(166, 77, 121, 0.2); /* Gölgeler için */
+      --input-bg: #1A1A1D;      /* Input arka planları için */
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease,
+                  color 0.3s ease,
+                  border-color 0.3s ease,
+                  box-shadow 0.3s ease;
+    }
+    
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    
+    .app-container {
+      min-height: 100vh;
+      background: linear-gradient(135deg, 
+        var(--gradient-start) 0%, 
+        var(--gradient-end) 100%);
+    }
+
+    @font-face {
+      font-family: 'Pixel';
+      src: url(../assets/fonts/PixelifySans-Regular.ttf);
+    }
