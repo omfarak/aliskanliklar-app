@@ -1,0 +1,120 @@
+/* components/AuthPixelAlert/AuthPixelAlert.css */
+.pixel-alert-popup {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: auto !important;
+    max-width: 500px !important;
+    min-width: 300px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: var(--bg-primary) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .pixel-alert-container {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .alert-gif {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .alert-gif img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .alert-content {
+    flex-grow: 1;
+  }
+  
+  .alert-content h3 {
+    color: var(--text-primary);
+    font-family: 'Pixel', sans-serif;
+    font-size: 1rem;
+    margin: 0 0 4px 0;
+  }
+  
+  .alert-content p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+  
+  /* Alert types */
+  .pixel-alert-popup.success {
+    border-color: var(--success) !important;
+  }
+  
+  .pixel-alert-popup.error {
+    border-color: var(--error) !important;
+  }
+  
+  .pixel-alert-popup.warning {
+    border-color: var(--warning) !important;
+  }
+  .no-border {
+    border: none !important;
+    background: transparent !important;
+  }
+  
+  .custom-alert-text {
+    /* Text için özel stiller */
+    color: var(--text-primary);
+    font-family: 'Pixel', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    /* İstediğiniz diğer CSS özellikleri */
+  }
+
+  /* Dark theme */
+  [data-theme='dark'] .pixel-alert-popup {
+    background: var(--bg-secondary) !important;
+  }
+  
+  /* Responsive */
+  @media (max-width: 576px) {
+    .pixel-alert-popup {
+      top: 10px !important;
+      right: 10px !important;
+      left: 10px !important;
+      min-width: unset !important;
+    }
+  
+    .pixel-alert-container {
+      padding: 12px;
+      gap: 12px;
+    }
+  
+    .alert-gif {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .alert-content h3 {
+      font-size: 0.9rem;
+    }
+  
+    .alert-content p {
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .pixel-alert-popup {
+      animation: none !important;
+    }
+  }

@@ -4,17 +4,25 @@ import AuthButton from "../../components/Auth/AuthButton/AuthButton";
 import AuthCard from "../../components/Auth/AuthCard/AuthCard";
 import FormInput from "../../components/FormInputs/FormInputs";
 import AuthLink from "../../components/Auth/AuthLink/AuthLink";
+import AuthPixelAlert from "../../components/Auth/AuthPixelAlert/AuthPixelAlert";
 import axios from "axios";
+
 
 import "./Register.css";
 
 function Register() {
+  const gifPath = "../../assets/icons/rapi.gif";
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     email: "",
   });
-
+  const [errors, setErrors] = useState({
+    username: "",
+    password: "",
+    email: "",
+    general: "",
+  });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -38,11 +46,20 @@ function Register() {
       );
 
       console.log("Registration successful:", response.data);
+      setFormData({
+        username: "",
+        password: "",
+        email: "",
+      });
+
     } catch (error) {
-      console.error(
-        "Registration failed:",
-        error.response ? error.response.data : error.message
-      );
+      if (error.response.data == "Username already exists") {
+        AuthPixelAlert.error("Username already exists");
+        setErrors((prevState) => ({
+          ...prevState,
+          username: "Username already exists",
+        }));
+      }
     }
   };
 
@@ -57,6 +74,7 @@ function Register() {
             placeholder="Kullanıcı Adı"
             value={formData.username}
             onChange={handleChange}
+            error={errors.username}
           />
           <FormInput
             type="password"
