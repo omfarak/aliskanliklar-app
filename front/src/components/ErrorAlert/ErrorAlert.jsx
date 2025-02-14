@@ -4,34 +4,40 @@ import './ErrorAlert.css';
 const PixelErrorAlert = ({ 
   message, 
   type = 'error', 
-  duration = 3000 
+  duration = 3000,
+  onClose 
 }) => {
-  const [visible, setVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setVisible(false);
+      setIsVisible(false);
+      onClose && onClose();
     }, duration);
 
     return () => clearTimeout(timer);
-  }, [duration]);
+  }, [duration, onClose]);
 
-  if (!visible) return null;
+  if (!isVisible) return null;
 
   return (
-    <div className={`pixel-alert pixel-alert-${type}`}>
-      <div className="pixel-alert-border">
-        <div className="pixel-alert-content">
-          <div className="pixel-alert-icon">
-            {type === 'error' && '❌'}
-            {type === 'warning' && '⚠️'}
-            {type === 'success' && '✅'}
-          </div>
-          <p className="pixel-alert-message">{message}</p>
+    <div className={`pixel-error-alert pixel-error-${type}`}>
+      <div className="pixel-error-content">
+        <div className="pixel-error-icon">
+          {type === 'error' && '❌'}
+          {type === 'warning' && '⚠️'}
+          {type === 'success' && '✅'}
         </div>
-        <div className="pixel-alert-close" onClick={() => setVisible(false)}>
+        <p className="pixel-error-message">{message}</p>
+        <button 
+          className="pixel-error-close" 
+          onClick={() => {
+            setIsVisible(false);
+            onClose && onClose();
+          }}
+        >
           X
-        </div>
+        </button>
       </div>
     </div>
   );

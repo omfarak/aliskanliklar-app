@@ -1,73 +1,58 @@
-.pixel-alert {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    font-family: 'Press Start 2P', cursive; /* Pixel font */
+.pixel-error-alert {
+    position: absolute;
+    top: -70px;
+    right: 0;
+    z-index: 10;
+    width: 250px;
+    border: 3px solid #000;
+    background-color: #fff;
+    box-shadow: 4px 4px 0 #000;
+    animation: slideIn 0.3s ease-out;
   }
   
-  .pixel-alert-border {
-    background-color: #000;
-    border: 4px solid #fff;
-    box-shadow: 
-      0 0 0 2px #000,  /* Dış siyah border */
-      4px 4px 0 2px #888; /* Pixel gölge efekti */
+  .pixel-error-content {
     display: flex;
     align-items: center;
     padding: 10px;
-    max-width: 300px;
-  }
-  
-  .pixel-alert-content {
-    display: flex;
-    align-items: center;
     gap: 10px;
   }
   
-  .pixel-alert-icon {
+  .pixel-error-icon {
     font-size: 24px;
-    pixel-size: 2;
   }
   
-  .pixel-alert-message {
-    color: #fff;
+  .pixel-error-message {
+    flex-grow: 1;
     font-size: 12px;
-    line-height: 1.4;
+    color: #000;
   }
   
-  .pixel-alert-close {
-    color: #fff;
-    margin-left: 10px;
+  .pixel-error-close {
+    background: none;
+    border: none;
     cursor: pointer;
     font-size: 16px;
   }
   
-  /* Farklı Tipler */
-  .pixel-alert-error {
-    background-color: #ff0000;
+  .pixel-error-error {
+    background-color: #ffcccc;
   }
   
-  .pixel-alert-warning {
-    background-color: #ffa500;
+  .pixel-error-warning {
+    background-color: #fff3cd;
   }
   
-  .pixel-alert-success {
-    background-color: #00ff00;
+  .pixel-error-success {
+    background-color: #d4edda;
   }
   
-  /* Animasyonlar */
-  @keyframes slide-in {
+  @keyframes slideIn {
     from {
+      transform: translateY(-20px);
       opacity: 0;
-      transform: translateX(-50%) translateY(-20px);
     }
     to {
+      transform: translateY(0);
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
     }
-  }
-  
-  .pixel-alert {
-    animation: slide-in 0.3s ease-out;
   }

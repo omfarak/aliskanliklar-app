@@ -65,7 +65,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: clamp(15px, 3vw, 20px);
+    margin-top: clamp(20px, 3vw, 30px);
+    margin-bottom: clamp(10px, 3vw, 20px);
     font-size: clamp(12px, 2.5vw, 14px);
     color: var(--text-primary);
     flex-wrap: wrap;
@@ -81,6 +82,9 @@
   .forgot-password {
     color: var(--text-primary);
     text-decoration: none;
+    /*link underline*/
+    border-bottom: 1px solid var(--text-primary);
+    
   }
   
   .forgot-password:hover {
@@ -162,7 +166,7 @@
   /* Media Queries */
   @media (max-width: 480px) {
     .form-footer {
-      flex-direction: column;
+      /*flex-direction: column;*/
       align-items: flex-start;
       gap: 15px;
     }
