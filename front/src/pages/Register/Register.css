@@ -1,0 +1,7 @@
+.login-link {
+    display: flex;
+    margin-bottom: clamp(15px, 3vw, 20px);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: clamp(12px, 2.5vw, 14px);
+  }

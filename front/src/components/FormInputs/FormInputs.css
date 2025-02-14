@@ -1,18 +1,37 @@
-.input-group {
-    margin-bottom: clamp(10px, 2vw, 15px);
-}
-
-.auth-input {
+.form-input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .form-input {
     width: 100%;
-    padding: clamp(8px, 2vw, 12px);
+    padding: 10px;
     border: 2px solid var(--border-color);
-    border-radius: clamp(4px, 1vw, 5px);
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-size: clamp(12px, 2.5vw, 14px);
-    font-family: 'Pixel', sans-serif;
-}
-
-.auth-input::placeholder {
-    color: var(--text-secondary);
-}
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+  
+  .input-error {
+    border-color: var(--error-color);
+  }
+  
+  .error-message {
+    color: var(--error-color);
+    font-size: 12px;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    animation: error-shake 0.3s;
+  }
+  
+  @keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }

@@ -20,3 +20,42 @@
     margin-bottom: clamp(20px, 4vw, 30px);
     font-size: clamp(12px, 2.5vw, 14px);
 }
+
+.auth-card {
+    background-color: var(--bg-secondary);
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: clamp(8px, 2vw, 10px);
+    width: 100%;
+    max-width: min(90vw, 400px);
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--border-color);
+}
+
+/* Logo için yeni stil */
+.auth-card-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: clamp(15px, 3vw, 25px);
+}
+
+.auth-card-logo {
+    width: clamp(80px, 30%, 150px); /* Responsive genişlik */
+    height: auto; /* Orantılı yükseklik */
+    object-fit: contain; /* İçeriği koru */
+    max-width: 100%; /* Kapsayıcıdan taşmayı engelle */
+}
+
+.auth-card h1 {
+    color: var(--text-primary);
+    margin-bottom: clamp(3px, 1vw, 5px);
+    font-size: clamp(20px, 4vw, 24px);
+}
+
+.auth-card .subtitle {
+    color: var(--text-secondary);
+    margin-bottom: clamp(20px, 4vw, 30px);
+    font-size: clamp(12px, 2.5vw, 14px);
+}
+

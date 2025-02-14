@@ -1,12 +1,18 @@
   /* src/styles/global.css */
   :root {
-      --bg-primary: #FFD95F;
-      --bg-secondary: #FFEFC8;
-      --text-primary: #3D8D7A;
-      --text-secondary: #2e3a2b;
-      --border-color: #3D8D7A; /*text prim */
-      --gradient-start: #3D8D7A; /*text prim */
-      --gradient-end: #B3D8A8; /*text seec*/
+      --bg-primary: #faf2f7;
+      --bg-secondary: #f7e5f6;
+      --text-primary: #957085;
+      --text-secondary: #9a517a;
+      --border-color: #550b9b76; /*text prim */
+      --gradient-start: #f3a9c7; /*text prim */
+      --gradient-end: #eef3ed; /*text seec*/
+
+      
+    /* State Colors */
+    --success: #4CAF50;
+    --error: #F44336;
+    --warning: #FF9800;
     }
     
     [data-theme='dark'] {

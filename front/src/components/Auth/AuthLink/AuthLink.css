@@ -1,0 +1,27 @@
+.auth-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center; /* merkeze almak için */
+    margin-top: 16px; /* üstten boşluk */
+}
+
+.auth-link p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.auth-link a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.auth-link a {
+    border-bottom: 2px solid var(--text-primary); /* Özel alt çizgi */
+}
+
+.auth-link a:hover {
+    color: var(--text-secondary);
+}
