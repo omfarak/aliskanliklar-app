@@ -4,15 +4,14 @@ import logoGif from '../../../assets/icons/rapi.gif'; // GIF import edilir
 
 const AuthCard = ({ 
   children, 
-  logo = logoGif, 
-  logoAlt = "Logo",
+  logo, 
   logoWidth = "clamp(100px, 30%, 200px)", // Responsive genişlik
 }) => (
   <div className="auth-card">
     <div className="auth-card-logo-container">
       <img 
-        src={logo} 
-        alt={logoAlt} 
+        //if logo valid
+        src={logo ? logoGif : null} // Logo varsa logo, yoksa gif
         className="auth-card-logo"
         style={{ 
           width: logoWidth,

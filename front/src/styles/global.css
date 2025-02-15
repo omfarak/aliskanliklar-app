@@ -1,12 +1,13 @@
   /* src/styles/global.css */
   :root {
-      --bg-primary: #faf2f7;
-      --bg-secondary: #f7e5f6;
-      --text-primary: #957085;
-      --text-secondary: #9a517a;
-      --border-color: #550b9b76; /*text prim */
-      --gradient-start: #f3a9c7; /*text prim */
-      --gradient-end: #eef3ed; /*text seec*/
+    
+    --bg-primary: #e9ecef;      /* Daha koyu gri arka plan */
+    --bg-secondary: #f1f3f5;    /* Kart arka planı - açık gri */
+    --text-primary: #495057;    /* Koyu gri ana metin */
+    --text-secondary: #6c757d;  /* Orta gri ikincil metin */
+    --border-color: #dee2e6;    /* Açık gri border */
+    --gradient-start: #e9ecef;  /* Gradient başlangıç */
+    --gradient-end: #c6c2c2;
 
       
     /* State Colors */
