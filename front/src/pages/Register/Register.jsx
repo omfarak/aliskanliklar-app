@@ -6,11 +6,12 @@ import FormInput from "../../components/FormInputs/FormInputs";
 import AuthLink from "../../components/Auth/AuthLink/AuthLink";
 import AuthPixelAlert from "../../components/Auth/AuthPixelAlert/AuthPixelAlert";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 import "./Register.css";
 
 function Register() {
+  const navigate = useNavigate();
   const gifPath = "../../assets/icons/rapi.gif";
   const [formData, setFormData] = useState({
     username: "",
@@ -46,18 +47,34 @@ function Register() {
       );
 
       console.log("Registration successful:", response.data);
+      navigate("/login");
       setFormData({
         username: "",
         password: "",
         email: "",
       });
-
     } catch (error) {
+      console.log(error);
+      if (error.response.data == "Username and Email already exists") {
+        AuthPixelAlert.error("Username and Email already exists");
+        setErrors((prevState) => ({
+          ...prevState,
+          username: "Username already exists",
+          email: "Email already exists",
+        }));
+      }
       if (error.response.data == "Username already exists") {
         AuthPixelAlert.error("Username already exists");
         setErrors((prevState) => ({
           ...prevState,
           username: "Username already exists",
+        }));
+      }
+      if (error.response.data == "Email already exists") {
+        AuthPixelAlert.error("Email already exists");
+        setErrors((prevState) => ({
+          ...prevState,
+          email: "Email already exists",
         }));
       }
     }

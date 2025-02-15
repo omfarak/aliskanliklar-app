@@ -1,85 +1,113 @@
 // components/LoginPage.jsx
-import React, { useState } from 'react';
-import AuthContainer from '../../components/Auth/AuthContainer/AuthContainer';
-import AuthButton from '../../components/Auth/AuthButton/AuthButton';
-import AuthCard from '../../components/Auth/AuthCard/AuthCard';
-import FormInput from '../../components/FormInputs/FormInputs';
-import logo from '../../assets/icons/baha.png'
-import PixelLogo from '../../components/PixelLogo/PixelLogo';
-import PixelErrorAlert from '../../components/ErrorAlert/ErrorAlert';
-import './LoginPage.css';
-
+import React, { useState } from "react";
+import AuthContainer from "../../components/Auth/AuthContainer/AuthContainer";
+import AuthButton from "../../components/Auth/AuthButton/AuthButton";
+import AuthCard from "../../components/Auth/AuthCard/AuthCard";
+import FormInput from "../../components/FormInputs/FormInputs";
+import logo from "../../assets/icons/baha.png";
+import PixelLogo from "../../components/PixelLogo/PixelLogo";
+import AuthPixelAlert from "../../components/Auth/AuthPixelAlert/AuthPixelAlert";
+import PixelErrorAlert from "../../components/ErrorAlert/ErrorAlert";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./LoginPage.css";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    rememberMe: false
+    username: "",
+    password: "",
+    rememberMe: false,
   });
 
   const [errors, setErrors] = useState({
-    username: '',
-    password: '',
-    general: ''
+    username: "",
+    password: "",
+    general: "",
   });
 
   const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [alertType, setAlertType] = useState('error');
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("error");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent form refresh
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
+      console.log("Login successful:", response.data);
+      setFormData({
+        username: "",
+        password: "",
+        email: "",
+      });
+      navigate("/add-habit");
+    } catch (error) {
+      if (error.response.data == "Invalid username or password") {
+        AuthPixelAlert.error("Invalid username or password");
+        setErrors((prevState) => ({
+          ...prevState,
+          username: "Invalid username or password",
+          password: "Invalid username or password",
+        }));
+      }
+    }
+  };
 
-   // Genel handleChange metodu
-   const handleChange = (e) => {
+  // Genel handleChange metodu
+  const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
     // Farklı input türlerine göre state güncelleme
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState, // Önceki state'i koru
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
 
     // Dinamik validasyon
     validateField(name, value);
   };
 
+  // Detaylı alan validasyonu
+  const validateField = (name, value) => {
+    let errorMessage = "";
 
-   // Detaylı alan validasyonu
-   const validateField = (name, value) => {
-    let errorMessage = '';
-
-    switch(name) {
-      case 'username':
+    switch (name) {
+      case "username":
         if (value.length < 3) {
-          errorMessage = 'Kullanıcı adı en az 3 karakter olmalı';
+          errorMessage = "Kullanıcı adı en az 3 karakter olmalı";
         }
         break;
-      
-      case 'password':
+
+      case "password":
         if (value.length < 6) {
-          errorMessage = 'Şifre en az 6 karakter olmalı';
+          errorMessage = "Şifre en az 6 karakter olmalı";
         }
         break;
-      
-      case 'email':
+
+      case "email":
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
-          errorMessage = 'Geçerli bir email adresi girin';
+          errorMessage = "Geçerli bir email adresi girin";
         }
         break;
-      
+
       default:
         break;
     }
 
     // Hata state'ini güncelle
-    setErrors(prevErrors => ({
+    setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: errorMessage
+      [name]: errorMessage,
     }));
   };
 
@@ -88,7 +116,7 @@ function LoginPage() {
   return (
     <AuthContainer>
       {showAlert && (
-        <PixelErrorAlert 
+        <PixelErrorAlert
           message={alertMessage}
           type={alertType}
           duration={3000}
@@ -98,7 +126,7 @@ function LoginPage() {
 
       <AuthCard>
         <h1>Giriş Yap</h1>
-        
+
         <form onSubmit={handleSubmit}>
           <FormInput
             type="text"
@@ -108,7 +136,7 @@ function LoginPage() {
             onChange={handleChange}
             error={errors.username}
           />
-          
+
           <FormInput
             type="password"
             name="password"
@@ -117,21 +145,19 @@ function LoginPage() {
             onChange={handleChange}
             error={errors.password}
           />
-          
+
           <FormFooter
             rememberMe={formData.rememberMe}
             onRememberMeChange={handleChange}
           />
-          
-          <AuthButton type="submit">
-            Login
-          </AuthButton>
+
+          <AuthButton type="submit">Login</AuthButton>
         </form>
-        
-        <div className="signup-link">
+
+        <div className="signup-link" onClick={() => navigate("/register")}>
           <p>Sign Up →</p>
         </div>
-        
+
         <SocialButtons />
       </AuthCard>
     </AuthContainer>
@@ -140,10 +166,7 @@ function LoginPage() {
 
 export default LoginPage;
 
-
 // components/FormInput.jsx
-
-
 
 // components/Logo.jsx
 const Logo = () => (
