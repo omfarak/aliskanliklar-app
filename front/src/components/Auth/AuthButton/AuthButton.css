@@ -1,0 +1,22 @@
+.auth-button {
+    width: 100%;
+    padding: clamp(8px, 2vw, 12px);
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: clamp(4px, 1vw, 5px);
+    cursor: pointer;
+    font-size: clamp(14px, 3vw, 16px);
+    margin-bottom: clamp(15px, 3vw, 20px);
+    font-family: 'Pixel', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: var(--text-secondary);
+    transform: translateY(-2px);
+}
+
+.auth-button:active {
+    transform: translateY(0);
+}
