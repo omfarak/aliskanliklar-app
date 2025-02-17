@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface AppUserRepository extends JpaRepository<AppUser, Integer> {
     AppUser findByUsernameAndPassword(String username, String password);
+    AppUser findByEmailAndPassword(String email, String password);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 }

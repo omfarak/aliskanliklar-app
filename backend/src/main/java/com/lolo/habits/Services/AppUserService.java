@@ -17,6 +17,10 @@ public class AppUserService {
         return appUserRepository.findByUsernameAndPassword(username, password);
     }
 
+    public AppUser findByEmailAndPassword(String email, String password) {
+        return appUserRepository.findByEmailAndPassword(email, password);
+    }
+
     public Boolean existsByUsername(String username) {
         return appUserRepository.existsByUsername(username);
     }

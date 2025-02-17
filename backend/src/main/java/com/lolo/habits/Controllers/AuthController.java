@@ -21,9 +21,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginReqDto loginRequest) {
         AppUser user = appUserService.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
+        if(user == null) {
+            user = appUserService.findByEmailAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
+        }
 
         if (user == null) {
-            return ResponseEntity.status(400).body("Invalid username or password");
+            return ResponseEntity.status(400).body("Invalid username/email or password");
         }
         else {
             return ResponseEntity.ok("Login successful");
