@@ -4,8 +4,7 @@ import AuthContainer from "../../components/Auth/AuthContainer/AuthContainer";
 import AuthButton from "../../components/Auth/AuthButton/AuthButton";
 import AuthCard from "../../components/Auth/AuthCard/AuthCard";
 import FormInput from "../../components/FormInputs/FormInputs";
-import logo from "../../assets/icons/baha.png";
-import PixelLogo from "../../components/PixelLogo/PixelLogo";
+import gif from "../../assets/icons/rapi.gif";
 import AuthPixelAlert from "../../components/Auth/AuthPixelAlert/AuthPixelAlert";
 import PixelErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 import { useNavigate } from "react-router-dom";
@@ -124,7 +123,7 @@ function LoginPage() {
         />
       )}
 
-      <AuthCard>
+      <AuthCard logo={gif}>
         <h1>Giriş Yap</h1>
 
         <form onSubmit={handleSubmit}>

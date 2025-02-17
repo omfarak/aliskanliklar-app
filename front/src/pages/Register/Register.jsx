@@ -6,6 +6,7 @@ import FormInput from "../../components/FormInputs/FormInputs";
 import AuthLink from "../../components/Auth/AuthLink/AuthLink";
 import AuthPixelAlert from "../../components/Auth/AuthPixelAlert/AuthPixelAlert";
 import axios from "axios";
+import gif from "../../assets/icons/rapi.gif";
 import { useNavigate } from "react-router-dom";
 
 import "./Register.css";
@@ -82,7 +83,7 @@ function Register() {
 
   return (
     <AuthContainer>
-      <AuthCard>
+      <AuthCard logo={gif}>
         <h1>Kayıt Ol</h1>
         <form onSubmit={handleSubmit}>
           <FormInput
