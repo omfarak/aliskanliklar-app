@@ -31,12 +31,10 @@ public class AuthController {
         else {
             return ResponseEntity.ok("Login successful");
         }
-
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AppUser user) {
-
         boolean valid1 =appUserService.existsByUsername(user.getUsername());
         boolean valid2 =appUserService.existsByEmail(user.getEmail());
         if (valid1 && valid2) {
