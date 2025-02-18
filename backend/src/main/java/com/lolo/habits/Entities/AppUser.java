@@ -1,5 +1,6 @@
 package com.lolo.habits.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class AppUser {
     private String phone;
 
     @OneToMany(mappedBy= "appUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Habit> habits;
 
 
@@ -78,6 +80,7 @@ public class AppUser {
             this.habits = new ArrayList<>();
         }
         this.habits.add(habit);
+        habit.setUser(this);
     }
 
 

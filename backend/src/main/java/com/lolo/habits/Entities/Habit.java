@@ -1,5 +1,7 @@
 package com.lolo.habits.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,20 +21,22 @@ public class Habit {
 
     private String category;
 
-    @Enumerated(EnumType.STRING)
-    private Priority priority;
+//    @Enumerated(EnumType.STRING)
+//    private Priority priority;
+    private boolean reminder;
 
     @ManyToOne
     @JoinColumn(name= "app_user_id")
+    @JsonBackReference
     private AppUser appUser;
 
     public Habit(){}
 
-    public Habit(String name, Set<DayOfWeek> weekly_frequency, String category, Priority priority) {
+    public Habit(String name, Set<DayOfWeek> weekly_frequency, String category, boolean reminder) {
         this.name = name;
         this.weekly_frequency = weekly_frequency;
         this.category = category;
-        this.priority = priority;
+        this.reminder = reminder;
     }
 
     public int getId() {
@@ -63,19 +67,19 @@ public class Habit {
         this.category = category;
     }
 
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
     public AppUser getUser() {
         return appUser;
     }
 
     public void setUser(AppUser user) {
         this.appUser = user;
+    }
+
+    public boolean isReminder() {
+        return reminder;
+    }
+
+    public void setReminder(boolean reminder) {
+        this.reminder = reminder;
     }
 }

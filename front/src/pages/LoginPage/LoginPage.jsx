@@ -36,6 +36,7 @@ function LoginPage() {
         "http://localhost:8080/api/auth/login",
         formData,
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
@@ -43,12 +44,12 @@ function LoginPage() {
       );
 
       console.log("Login successful:", response.data);
+      navigate("/add-habit");
       setFormData({
         username: "",
         password: "",
         email: "",
       });
-      navigate("/add-habit");
     } catch (error) {
       if (error.response.data == "Invalid username or password") {
         AuthPixelAlert.error("Invalid username or password");

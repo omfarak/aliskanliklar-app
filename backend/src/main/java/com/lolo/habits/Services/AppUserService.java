@@ -17,6 +17,10 @@ public class AppUserService {
         return appUserRepository.findByUsernameAndPassword(username, password);
     }
 
+    public AppUser findByEmailAndPassword(String email, String password) {
+        return appUserRepository.findByEmailAndPassword(email, password);
+    }
+
     public Boolean existsByUsername(String username) {
         return appUserRepository.existsByUsername(username);
     }
@@ -55,7 +59,9 @@ public class AppUserService {
 
     public void addHabit(int userId, Habit habit) {
         AppUser appUser = getUser(userId);
-        if (appUser != null)
+        if (appUser != null) {
             appUser.addHabit(habit);
+            appUserRepository.save(appUser);
+        }
     }
 }
