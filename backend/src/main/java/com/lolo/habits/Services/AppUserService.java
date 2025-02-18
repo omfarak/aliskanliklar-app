@@ -59,7 +59,9 @@ public class AppUserService {
 
     public void addHabit(int userId, Habit habit) {
         AppUser appUser = getUser(userId);
-        if (appUser != null)
+        if (appUser != null) {
             appUser.addHabit(habit);
+            appUserRepository.save(appUser);
+        }
     }
 }

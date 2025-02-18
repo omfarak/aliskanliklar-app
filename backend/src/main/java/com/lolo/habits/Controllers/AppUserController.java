@@ -2,9 +2,9 @@ package com.lolo.habits.Controllers;
 
 import com.lolo.habits.Entities.*;
 import com.lolo.habits.Services.AppUserService;
-import com.lolo.habits.security.CurrentUser;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -21,8 +21,11 @@ public class AppUserController {
     AppUserService appUserService;
 
     @PostMapping("/add-habit")
-    public void addHabit(@RequestBody HabitReqDTO habitReqDTO, @CurrentUser AppUser currentUser) {
-        System.out.println(currentUser);
+    public ResponseEntity<?> addHabit(@RequestBody HabitReqDTO habitReqDTO, HttpSession session) {
+        AppUser user = appUserService.getUser((Integer) session.getAttribute("USER"));
+        if (user == null) {
+            return ResponseEntity.status(400).body("Session user not found / add-habit");
+        }
         Set<DayOfWeek> freq = new HashSet<>();
 
         // Retrieve the frequency map from the DTO
@@ -51,7 +54,17 @@ public class AppUserController {
 
         Habit newHabit = new Habit(habitReqDTO.getHabitName(), freq, habitReqDTO.getCategory(), habitReqDTO.isReminder());
 
+        appUserService.addHabit(user.getId(), newHabit);
+        return ResponseEntity.ok("Habit added successfully");
+    }
 
+    @GetMapping("/get-habit")
+    public ResponseEntity<?> addHabit(HttpSession session) {
+        AppUser user = appUserService.getUser((Integer) session.getAttribute("USER"));
+        if (user == null) {
+            return ResponseEntity.status(400).body("Session user not found / add-habit");
+        }
+        return ResponseEntity.ok(user.getHabits());
     }
 
     public AppUserController(AppUserService appUserService) {

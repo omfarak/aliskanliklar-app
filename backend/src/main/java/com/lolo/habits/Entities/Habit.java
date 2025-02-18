@@ -1,5 +1,7 @@
 package com.lolo.habits.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -25,6 +27,7 @@ public class Habit {
 
     @ManyToOne
     @JoinColumn(name= "app_user_id")
+    @JsonBackReference
     private AppUser appUser;
 
     public Habit(){}
