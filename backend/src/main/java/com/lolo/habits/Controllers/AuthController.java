@@ -31,12 +31,17 @@ public class AuthController {
         }
 
         session.setAttribute("USER", user.getId());
+        System.out.println("Session ID:" + session.getId());
+        System.out.println(session.getAttribute("USER"));
         return ResponseEntity.ok("Login successful");
     }
 
     @GetMapping("/me")
     public ResponseEntity<?> me(HttpSession session) {
         Integer userId = (Integer) session.getAttribute("USER");
+
+        System.out.println("Session ID:" + session.getId());
+        System.out.println(session.getAttribute("USER"));
 
         if(userId == null){
             return ResponseEntity.status(400).body("No user saved to session");

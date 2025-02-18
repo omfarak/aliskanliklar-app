@@ -36,6 +36,7 @@ function LoginPage() {
         "http://localhost:8080/api/auth/login",
         formData,
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
@@ -48,7 +49,6 @@ function LoginPage() {
         password: "",
         email: "",
       });
-      navigate("/add-habit");
     } catch (error) {
       if (error.response.data == "Invalid username or password") {
         AuthPixelAlert.error("Invalid username or password");
@@ -155,6 +155,18 @@ function LoginPage() {
 
         <div className="signup-link" onClick={() => navigate("/register")}>
           <p>Sign Up →</p>
+        </div>
+
+        <div className="signup-link" onClick={() => axios.get(
+            "http://localhost:8080/api/auth/me",
+            {
+              withCredentials: true,
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+        )}>
+          <p>ME →</p>
         </div>
 
         <SocialButtons />

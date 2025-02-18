@@ -41,6 +41,7 @@ function Register() {
         "http://localhost:8080/api/auth/register",
         formData,
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
