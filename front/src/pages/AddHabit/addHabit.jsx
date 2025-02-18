@@ -84,7 +84,7 @@ const AddHabit = () => {
 
     try {
       const response = await axios.post(
-          "http://localhost:8080/api/users/add-habit",
+          "http://localhost:8080/api/user/add-habit",
           habitData,
           {
             withCredentials: true,
