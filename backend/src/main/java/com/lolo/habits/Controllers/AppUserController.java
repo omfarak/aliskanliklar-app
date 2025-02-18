@@ -46,10 +46,10 @@ public class AppUserController {
             }
             i++;
         }
-/*        System.out.println(habitReqDTO.getHabitName());
+        System.out.println(habitReqDTO.getHabitName());
         System.out.println(freq);
         System.out.println(habitReqDTO.getCategory());
-        System.out.println(habitReqDTO.isReminder());*/
+        System.out.println(habitReqDTO.isReminder());
 
 
         Habit newHabit = new Habit(habitReqDTO.getHabitName(), freq, habitReqDTO.getCategory(), habitReqDTO.isReminder());

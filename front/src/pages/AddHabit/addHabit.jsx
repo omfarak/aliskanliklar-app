@@ -7,6 +7,8 @@ import AuthButton from '../../components/Auth/AuthButton/AuthButton';
 import gif from '../../assets/icons/bit.gif';
 import { useNavigate } from 'react-router-dom';
 import './AddHabit.css';
+import axios from "axios";
+import AuthPixelAlert from "../../components/Auth/AuthPixelAlert/AuthPixelAlert";
 
 const AddHabit = () => {
   const { isDarkMode } = useTheme();
@@ -77,18 +79,25 @@ const AddHabit = () => {
   };
 
   // Form gönderme
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Form doğrulama
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      return;
+    try {
+      const response = await axios.post(
+          "http://localhost:8080/api/users/add-habit",
+          habitData,
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+      );
+      console.log("Habit adde:", response.data);
+    } catch (error) {
+      console.log(error);
+        AuthPixelAlert.error(error.response.data);
     }
-
-    // Form başarılı ise
-    console.log('Form gönderildi:', habitData);
   };
 
   const navigate = useNavigate();
