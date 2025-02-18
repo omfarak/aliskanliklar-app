@@ -158,18 +158,6 @@ function LoginPage() {
           <p>Sign Up →</p>
         </div>
 
-        <div className="signup-link" onClick={() => axios.get(
-            "http://localhost:8080/api/auth/me",
-            {
-              withCredentials: true,
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-        )}>
-          <p>ME →</p>
-        </div>
-
         <SocialButtons />
       </AuthCard>
     </AuthContainer>
