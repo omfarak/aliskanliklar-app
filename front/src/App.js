@@ -4,6 +4,7 @@ import AddHabit from './pages/AddHabit/addHabit';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/Register/Register';
 import ThemeToggle from './components/ThemeToggle/ThemeToggle';
+import DashboardPage from './pages/Dashboard/Dashboard';
 import './styles/global.css';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
@@ -19,6 +20,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/add-habit" element={<AddHabit />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/" element={<LoginPage />} />
             </Routes>
           </main>

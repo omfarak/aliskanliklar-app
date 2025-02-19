@@ -1,0 +1,169 @@
+/* HabitContainer.css */
+.habits-container {
+    padding: clamp(16px, 4vw, 24px);
+    width: 95%;  /* Mobil için kenarlardan boşluk */
+    max-width: 800px;
+    margin: clamp(16px, 4vw, 32px) auto;
+    font-family: Pixel, Arial, sans-serif;
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.366),
+                0 3px 8px rgba(0, 0, 0, 0.074);  
+    border: 1px solid var(--border-color);
+    
+    /* Container'ı dikey ve yatay olarak ortala */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.habits-header {
+    margin-bottom: 32px;
+}
+
+.habits-summary {
+    background-color: var(--bg-secondary);
+    border-radius: 25px;
+    padding: 24px;
+    margin-bottom: 32px;
+    border: 2px solid rgb(173, 173, 173);
+}
+
+.summary-title {
+    color: var(--text-primary);
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: clamp(8px, 2vw, 16px);
+}
+
+.stat-item {
+    text-align: center;
+    padding: 12px;
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.habits-list {
+    display: grid;
+    gap: 16px;
+}
+
+.habits-section-title {
+    color: var(--text-primary);
+    font-size: 18px;
+    margin: 24px 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-habit-button {
+    font-family: Pixel;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.add-habit-button:hover {
+    background-color: var(--bg-primary);
+    transform: translateY(-1px);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-secondary);
+}
+
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.filter-button {
+    font-family: Pixel, Arial, sans-serif;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-button.active {
+    background-color: var(--text-primary);
+    color: var(--bg-secondary);
+    border-color: var(--text-primary);
+}
+
+
+/* Mobil için daha küçük padding ve font boyutları */
+@media (max-width: 600px) {
+    .habits-container {
+        width: 92%;  /* Mobilde daha dar */
+        border-radius: 12px;
+    }
+
+    .summary-title {
+        font-size: 18px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+
+    .habits-section-title {
+        font-size: 16px;
+    }
+}
+
+/* Tablet için orta boyutlar */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .habits-container {
+        width: 94%;
+    }
+}
+
+/* Büyük ekranlar için maksimum genişlik */
+@media (min-width: 1025px) {
+    .habits-container {
+        width: 90%;
+    }
+}
