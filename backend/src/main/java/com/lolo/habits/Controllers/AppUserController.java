@@ -4,6 +4,7 @@ import com.lolo.habits.Entities.*;
 import com.lolo.habits.Services.AppUserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,12 +60,10 @@ public class AppUserController {
     }
 
     @GetMapping("/get-habit")
-    public ResponseEntity<?> addHabit(HttpSession session) {
-        AppUser user = appUserService.getUser((Integer) session.getAttribute("USER"));
-        if (user == null) {
-            return ResponseEntity.status(400).body("Session user not found / add-habit");
-        }
-        return ResponseEntity.ok(user.getHabits());
+    public ResponseEntity<?> getHabit(@RequestParam int page, @RequestParam int perPage, HttpSession session) {
+        int userid = (Integer) session.getAttribute("USER");
+        System.out.println("id" + userid + "pg" + page + "pp" + perPage);
+        return ResponseEntity.ok(appUserService.getHabits(userid, page, perPage));
     }
 
     public AppUserController(AppUserService appUserService) {
@@ -85,11 +84,6 @@ public class AppUserController {
     @GetMapping("/{userid}")
     public AppUser getUserById(@PathVariable("userid") Integer userid) {
         return appUserService.getUser(userid);
-    }
-
-    @GetMapping("/habits/{userid}")
-    public List<Habit> getUserHabits(@PathVariable("userid") Integer userid) {
-        return appUserService.getHabits(userid);
     }
 
     @PostMapping("/habits/{userid}")
