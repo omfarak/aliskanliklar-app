@@ -1,0 +1,122 @@
+/* HabitCard.css */
+.habit-card {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.habit-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.366),
+                0 3px 8px rgba(0, 0, 0, 0.074);  
+}
+
+.habit-card-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.habit-checkbox {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.habit-checkbox:checked {
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+.habit-checkbox:checked::after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.habit-info {
+    color: var(--text-primary);
+}
+
+.habit-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.habit-streak {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.habit-menu {
+    position: relative;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.menu-dots {
+    display: flex;
+    gap: 2px;
+}
+
+.menu-dot {
+    width: 4px;
+    height: 4px;
+    background-color: var(--text-secondary);
+    border-radius: 50%;
+}
+
+.menu-content {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    min-width: 120px;
+    z-index: 10;
+    padding: 8px 0;
+    display: none;
+}
+
+.menu-content.active {
+    display: block;
+}
+
+.menu-item {
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+    background-color: var(--bg-primary);
+}
