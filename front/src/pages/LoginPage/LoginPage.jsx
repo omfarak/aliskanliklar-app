@@ -44,7 +44,7 @@ function LoginPage() {
       );
 
       console.log("Login successful:", response.data);
-      navigate("/add-habit");
+      navigate("/dashboard");
       setFormData({
         username: "",
         password: "",

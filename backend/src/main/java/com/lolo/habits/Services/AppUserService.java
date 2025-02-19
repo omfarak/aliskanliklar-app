@@ -1,17 +1,23 @@
 package com.lolo.habits.Services;
 
-import com.lolo.habits.Entities.AppUser;
-import com.lolo.habits.Entities.AppUserRepository;
-import com.lolo.habits.Entities.Habit;
+import com.lolo.habits.Entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AppUserService {
     @Autowired
     AppUserRepository appUserRepository;
+
+    @Autowired
+    HabitRepository habitRepository;
 
     public AppUser findByUsernameAndPassword(String username, String password) {
         return appUserRepository.findByUsernameAndPassword(username, password);
@@ -50,11 +56,12 @@ public class AppUserService {
         appUserRepository.save(user);
     }
 
-    public List<Habit> getHabits(int userId) {
-        AppUser appUser = getUser(userId);
-        if (appUser != null)
-            return appUser.getHabits();
-        return null;
+    public List<HabitResDTO> getHabits(int userId, int page, int perPage) {
+        return habitRepository.findByAppUser_Id(userId, PageRequest.of(page, perPage))
+                .getContent()
+                .stream()
+                .map(HabitResDTO::new)
+                .collect(Collectors.toList());
     }
 
     public void addHabit(int userId, Habit habit) {
