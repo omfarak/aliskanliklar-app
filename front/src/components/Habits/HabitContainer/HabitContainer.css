@@ -129,6 +129,8 @@
     border-color: var(--text-primary);
 }
 
+.pagination-controls{
+}
 
 /* Mobil için daha küçük padding ve font boyutları */
 @media (max-width: 600px) {

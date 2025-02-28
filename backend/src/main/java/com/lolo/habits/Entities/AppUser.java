@@ -18,9 +18,7 @@ public class AppUser {
     private String phone;
 
     @OneToMany(mappedBy= "appUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private List<Habit> habits;
-
 
     public AppUser() {}
 

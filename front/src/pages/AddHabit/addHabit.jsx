@@ -93,7 +93,8 @@ const AddHabit = () => {
             },
           }
       );
-      console.log("Habit adde:", response.data);
+      console.log("Habit added:", response.data);
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
         AuthPixelAlert.error(error.response.data);

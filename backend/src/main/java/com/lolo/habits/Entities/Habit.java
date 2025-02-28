@@ -3,6 +3,7 @@ package com.lolo.habits.Entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
 
 import java.util.List;
 import java.util.Set;
@@ -27,8 +28,10 @@ public class Habit {
 
     @ManyToOne
     @JoinColumn(name= "app_user_id")
-    @JsonBackReference
     private AppUser appUser;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private HabitDetails details;
 
     public Habit(){}
 
@@ -37,6 +40,7 @@ public class Habit {
         this.weekly_frequency = weekly_frequency;
         this.category = category;
         this.reminder = reminder;
+        this.details = new HabitDetails();
     }
 
     public int getId() {
@@ -81,5 +85,13 @@ public class Habit {
 
     public void setReminder(boolean reminder) {
         this.reminder = reminder;
+    }
+
+    public HabitDetails getDetails() {
+        return details;
+    }
+
+    public void setDetails(HabitDetails details) {
+        this.details = details;
     }
 }
