@@ -1,5 +1,6 @@
 package com.lolo.habits.Entities;
 
+import com.fasterxml.jackson.databind.ser.std.StdArraySerializers;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class HabitDetails {
         streak = 0;
         longestStreak = 0;
         completedDates = new ArrayList<>();
+        completedDates.add(new Date());
     }
 
     public int getStreak() {

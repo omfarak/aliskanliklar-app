@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,6 +64,13 @@ public class AppUserService {
                 .stream()
                 .map(HabitResDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<Integer> getHabitInformations(int userId){
+        List<Integer> res = new ArrayList<>();
+        res.add(habitRepository.countByAppUser_Id(userId));
+
+        return res;
     }
 
     public void addHabit(int userId, Habit habit) {

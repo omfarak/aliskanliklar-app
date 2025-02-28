@@ -8,10 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -62,8 +59,20 @@ public class AppUserController {
     @GetMapping("/get-habit")
     public ResponseEntity<?> getHabit(@RequestParam int page, @RequestParam int perPage, HttpSession session) {
         int userid = (Integer) session.getAttribute("USER");
+        if (userid == 0) {
+            return ResponseEntity.status(400).body("Session user not found / get-habit");
+        }
         System.out.println("id" + userid + "pg" + page + "pp" + perPage);
         return ResponseEntity.ok(appUserService.getHabits(userid, page, perPage));
+    }
+
+    @GetMapping("/get-habit-info")
+    public ResponseEntity<?> getHabitInfo(HttpSession session) {
+        int userid = (Integer) session.getAttribute("USER");
+        if (userid == 0) {
+            return ResponseEntity.status(400).body("Session user not found / get-habit-info");
+        }
+        return ResponseEntity.ok(appUserService.getHabitInformations(userid));
     }
 
     public AppUserController(AppUserService appUserService) {

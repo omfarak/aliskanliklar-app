@@ -9,5 +9,7 @@ import java.util.List;
 public interface HabitRepository extends JpaRepository<Habit, Integer> {
     Page<Habit> getTopByAppUser_Id(int appUserId, Pageable pageable);
     Page<Habit> findByAppUser_Id(int userId, Pageable pageable);
+    List<Habit> findByAppUser_Id(int userId);
+    Integer countByAppUser_Id(int userId);
 
 }

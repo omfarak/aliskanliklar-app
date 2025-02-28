@@ -1,59 +1,52 @@
-// HabitContainer.jsx
 import React, { useState, useEffect } from 'react';
 import HabitCard from '../HabitCard/HabitCard';
 import './HabitContainer.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// Constants
 const FILTER_OPTIONS = {
     ALL: 'all',
     COMPLETED: 'completed',
     PENDING: 'pending'
 };
 const DEFAULT_STATS = {
-    total: 0,
-    completed: 0,
-    streak: 0
+    total: 0
 };
+const PAGE_SIZE = 3;
 
 const HabitContainer = () => {
     const navigate = useNavigate();
     const [filter, setFilter] = useState(FILTER_OPTIONS.ALL);
     const [habits, setHabits] = useState([]);
+    const [page, setPage] = useState(0);
     const stats = DEFAULT_STATS;
 
-    // Fetch habits
     useEffect(() => {
         const fetchHabits = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/api/users/get-habit", {
-                    params:{
-                        page: 0,
-                        perPage: 10
+                    params: {
+                        page: page,
+                        perPage: PAGE_SIZE
                     },
                     withCredentials: true,
                     headers: { "Content-Type": "application/json" }
                 });
-                console.log("Fetched habits:", response);
+
+                const response_2 = await axios.get("http://localhost:8080/api/users/get-habit-info", {
+                    withCredentials: true,
+                    headers: { "Content-Type": "application/json" }
+                });
+
                 setHabits(response.data);
-                stats.total = habits.length;
-                stats.completed = habits.filter(habit => {
-                    return habit.completed
-                }).length;
-                habits.forEach(habit => {
-                    if (habit.longestStreak > stats.streak) {
-                        stats.streak = habit.longestStreak;
-                    }
-                })
+                stats.total = response_2.data;
             } catch (error) {
                 console.error("Error fetching habits:", error);
             }
         };
         fetchHabits();
-    }, []);
+    }, [page]);
 
-    // Filter habits utility
     const getFilteredHabits = () => {
         if (!Array.isArray(habits)) return [];
         return habits.filter(habit => {
@@ -63,16 +56,6 @@ const HabitContainer = () => {
         });
     };
 
-    // Handlers
-    const markAsComplete = habitId => {
-        setHabits(prevHabits =>
-            prevHabits.map(habit =>
-                habit.id === habitId ? { ...habit, completed: true } : habit
-            )
-        );
-    };
-
-    // JSX Rendering
     const renderStats = () =>
         Object.entries(stats).map(([key, value]) => (
             <div key={key} className="stat-item">
@@ -116,7 +99,7 @@ const HabitContainer = () => {
                                 <HabitCard
                                     key={habit.id}
                                     habit={habit}
-                                    onComplete={() => { }}
+                                    onComplete={() => { habit.completed = !habit.completed; fetch(habit) }}
                                     onEdit={() => { }}
                                     onDelete={() => { }}
                                 />
@@ -124,6 +107,15 @@ const HabitContainer = () => {
                         ) : (
                             <div className="empty-state">Henüz alışkanlık eklenmemiş</div>
                         )}
+                    </div>
+                    <div className="pagination-controls">
+                        <button disabled={page === 0} onClick={() => setPage(prev => Math.max(prev - 1, 0))}>
+                            ←
+                        </button>
+                        <span> Sayfa {page + 1}</span>
+                        <button disabled={((page + 1) * 3) >= stats.total} onClick={() => setPage(prev => prev + 1)}>
+                            →
+                        </button>
                     </div>
                 </div>
             </div>
